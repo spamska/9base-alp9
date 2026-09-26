@@ -70,10 +70,10 @@ union code{
 	int i;
 	char *s;
 };
-char *promptstr;
-int doprompt;
+extern char *promptstr;
+extern int doprompt;
 #define	NTOK	8192
-char tok[NTOK];
+extern char tok[NTOK];
 #define	APPEND	1
 #define	WRITE	2
 #define	READ	3
@@ -93,7 +93,7 @@ struct var{
 };
 var *vlook(char*), *gvlook(char*), *newvar(char*, var*);
 #define	NVAR	521
-var *gvar[NVAR];				/* hash for globals */
+extern var *gvar[NVAR];				/* hash for globals */
 #define	new(type)	((type *)emalloc(sizeof(type)))
 char *emalloc(long);
 void *Malloc(ulong);
@@ -104,7 +104,7 @@ struct here{
 	char *name;
 	struct here *next;
 };
-int mypid;
+extern int mypid;
 /*
  * Glob character escape in strings:
  *	In a string, GLOB must be followed by *?[ or GLOB.
@@ -121,10 +121,10 @@ int mypid;
 #define	onebyte(c)	((c&0x80)==0x00)
 #define	twobyte(c)	((c&0xe0)==0xc0)
 #define	threebyte(c)	((c&0xf0)==0xe0)
-char **argp;
-char **args;
-int nerror;		/* number of errors encountered during compilation */
-int doprompt;		/* is it time for a prompt? */
+extern char **argp;
+extern char **args;
+extern int nerror;		/* number of errors encountered during compilation */
+/* doprompt: is it time for a prompt? (declared above) */
 /*
  * Which fds are the reading/writing end of a pipe?
  * Unfortunately, this can vary from system to system.
@@ -139,8 +139,8 @@ extern char *Rcmain(), Fdprefix[];
  * How many dot commands have we executed?
  * Used to ensure that -v flag doesn't print rcmain.
  */
-int ndot;
+extern int ndot;
 char *getstatus(void);
-int lastc;
-int lastword;
-int kidpid;
+extern int lastc;
+extern int lastword;
+extern int kidpid;

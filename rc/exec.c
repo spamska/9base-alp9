@@ -8,6 +8,32 @@
  */
 char *argv0="rc";
 
+/*
+ * Real, single homes for globals that used to be tentative definitions
+ * (plain "int foo;" etc.) sitting directly in rc.h / exec.h. That style
+ * relies on old-style "common symbol" linking (-fcommon) to merge the
+ * duplicate definition in every translation unit that includes the
+ * header; modern toolchains default to -fno-common, where each of those
+ * would become its own strong symbol and collide at link time. The
+ * headers now just declare these `extern`; this is the one place each
+ * is actually defined.
+ */
+thread *runq;
+code *codebuf;
+int ntrap;
+int trap[NSIG];
+int eflagok;
+char *promptstr;
+char tok[NTOK];
+var *gvar[NVAR];
+int mypid;
+char **argp;
+char **args;
+int nerror;
+int ndot;
+int lastc;
+int kidpid;
+
 void
 start(code *c, int pc, var *local)
 {

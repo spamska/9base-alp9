@@ -140,7 +140,7 @@ arglist:  /* nothing */ 	{ $$ = 0; }
 char	*progname;
 int	lineno = 1;
 jmp_buf	begin;
-int	indef;
+extern int	indef;	/* 1 if parsing a func or proc (defined in code.c) */
 char	*infile;	/* input file name */
 Biobuf	*bin;		/* input file descriptor */
 Biobuf	binbuf;
